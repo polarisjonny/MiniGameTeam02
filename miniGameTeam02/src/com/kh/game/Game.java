@@ -1,6 +1,13 @@
 package com.kh.game;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Scanner;
 public class Game {
+	
+	private String fileName = "Score.txt";
+	
 	public void startGame() {
 		printGameMenu();
 		selectGame();
@@ -16,6 +23,7 @@ public class Game {
 			System.out.print("게임을 선택해 주세요 : ");
 			Scanner scanner = new Scanner(System.in);
 			int num = scanner.nextInt();
+			int score = 0;
 			
 			if(num == 0) {
 				System.out.println("게임을 종료합니다.");
@@ -24,26 +32,43 @@ public class Game {
 			
 			switch(num) {
 			case 1 : CjGame cjGame = new CjGame();
-					 cjGame.Game();
+					 score = cjGame.Game();
 					 break;
 					 
 			case 2 : GameRSP gameRSP = new GameRSP();
-					 gameRSP.playGame();
+					 score = gameRSP.playGame();
 					 break;
 					 
 			case 3 : GugudanGame gugudanGame = new GugudanGame();
-					 gugudanGame.startGugudanGame();
+					 score = gugudanGame.startGugudanGame();
 					 break;
 					 
 			case 4 : GameY gameY = new GameY();
-					 gameY.guguGameStart();
+					 score = gameY.guguGameStart();
 					 break;
 					 
 			case 5 : SoyeonGame soyeonGame = new SoyeonGame();
-					 soyeonGame.game();
+					 score = soyeonGame.game();
 					 break;
 			
 			}
+			
+			recordScore(num, score);
 		}
+	}
+	
+	public void recordScore(int gameNum, int score) {
+		File f = new File(fileName);
+		String record = "[Game" + gameNum + "]  Score : " + score + "\n";
+		
+		System.out.println(record);
+		try(FileWriter fw = new FileWriter(f, true);
+			BufferedWriter fbw = new BufferedWriter(fw);) {
+			fbw.write(record);
+			fbw.flush();
+		} catch (IOException e1) {
+			e1.printStackTrace();
+		}
+		
 	}
 }

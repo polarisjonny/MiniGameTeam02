@@ -9,6 +9,8 @@ public class GugudanGame {
 	
 	int answer = 0;
 	
+	int record = 0;
+	
 	Scanner scanner = new Scanner(System.in);
 	
 	Random random = new Random();
@@ -19,9 +21,10 @@ public class GugudanGame {
 		System.out.println("--------------------------");
 		
 		startGugudanGame();
+		
 	}
 	
-	public void startGugudanGame() {
+	public int startGugudanGame() {
 		randomNumber = random.nextInt(9)+1;
 		y = random.nextInt(9) + 1;
 		answer = randomNumber * y;
@@ -30,8 +33,10 @@ public class GugudanGame {
 		
 		if(userNumber == answer) {
 			System.out.println("정답입니다!");
+			record += 50;
 		} else {
 			System.out.println("오답입니다 ㅠㅠ");
 		}
+		return record;
 	}
 }
