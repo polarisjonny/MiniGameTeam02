@@ -9,10 +9,12 @@ public class GameY {
 	
 	Scanner sc = new Scanner(System.in);
 	
-	public void guguGameStart() {
+	public int guguGameStart() {
 		
 		System.out.println("====구구단 게임(1~9단)====");
 		System.out.println("정답이면 종료\n");
+		
+		int record = 0;
 		
 		while(true) {
 			System.out.print(num1 + " X " + num2 + " = ");
@@ -22,7 +24,8 @@ public class GameY {
 			
 			if(userAnswer==answer) {
 				System.out.println("정답\n");
-				break;
+				record += 50;
+				return record;
 			}else {
 				System.out.println("땡\n");
 			}

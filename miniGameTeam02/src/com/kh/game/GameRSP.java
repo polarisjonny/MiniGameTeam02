@@ -132,7 +132,7 @@ case 24: System.out.println("                                ⠀⠉⠳⢤⣭⡿�
 }
 }
 
-public static void playGame() {
+public int playGame() {
 
 Scanner sc = new Scanner(System.in);
 
@@ -279,6 +279,8 @@ System.out.println("올바르지 않은 입력입니다.");;
 }
 
 } while(!isEnd);
+
+return credit;
 
 }
 
